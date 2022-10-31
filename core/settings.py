@@ -8,22 +8,24 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
-"""
 
+Envirenment variables
+https://pypi.org/project/python-decouple/
+"""
+from decouple import config
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$ub58100xy%c^y#f5+@trwi+t9$%*l#b)zozuctefee&%+62@%'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -130,35 +132,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # E-mail HOST configurations
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-'''
-EMAIL_USE_SSL = False
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'mail.wcore.com.br'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'umv@appdoevento.com.br'
-EMAIL_HOST_PASSWORD = 'Wcore32101234'
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-LOGGING = {
-   'version': 1,
-   'disable_existing_loggers': False,
-   'handlers': {
-      'file': {
-         'level': 'DEBUG',
-         'class': 'logging.FileHandler',
-         'filename': '/tmp/debug.log',
-      },
-   },
-   'loggers': {
-      'django': {
-         'handlers': ['file'],
-         'level': 'DEBUG',
-         'propagate': True,
-      },
-   },
-}
-'''
 # Extra resources from securety of the Django
 SECURE_HOSTS_SECOUNDS = True
 SECURE_HOSTS_INCLUDE_SUBDOMAINS = True
